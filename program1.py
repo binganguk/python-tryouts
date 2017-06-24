@@ -29,15 +29,15 @@ def say_hello(name):
 print say_hello("Raffi")
 
 
-def go_cook(tomatoe, egg):
+def go_cook(tomato, egg):
     """
 
-    :param tomatoe:
+    :param tomato:
     :param egg:
     :return:
     """
-    omlete = 5
-    return omlete
+    omelet = 5
+    return omelet
 
 
 print go_cook(4, 5)

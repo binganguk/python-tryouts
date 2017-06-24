@@ -14,9 +14,6 @@ words = [
     "bicycle",
 ]
 
-words[0]
-
-
 random_word = words[random.randint(0, 4)]
 
 good_guess = False
