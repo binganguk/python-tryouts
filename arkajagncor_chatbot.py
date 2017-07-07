@@ -18,13 +18,17 @@ while user_input != "bye":
 
     if "name" in user_input:
         print "My name is Billbot Chattins."
+
     elif "old" in user_input or "age" in user_input:
         print "I'm {} days old".format((datetime.date.today() - chatbot_birth_date).days)
+
     elif "marry" in user_input:
         print "Sorry I'm already married with a hot HP computer."
+
     elif "hello" in user_input:
         print "Hi, what a nice day for a talk."
 
+    
     else:
         print "This isn't in my vocabulary yet."
 
