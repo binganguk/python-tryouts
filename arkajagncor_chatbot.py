@@ -15,6 +15,8 @@ chatbot_birth_date = datetime.date(year=2017, month=7, day=7)
 
 user_input = ""
 
+# TODO: add the following words: chili, star wars, ketchup, swim, vacation
+
 
 while "bye" not in user_input:
 
@@ -40,6 +42,26 @@ while "bye" not in user_input:
 
     if "bye" in user_input:
         print "Bye, have a nice day."
+        found = True
+
+    if "chili" in user_input:
+        print "O, I don't like that because it's too hot for me."
+        found = True
+
+    if "star wars" in user_input:
+        print "I have seen all the movies and I like them."
+        found = True
+
+    if "kethup" in user_input:
+        print "Oh, yummy."
+        found = True
+
+    if "swim" in user_input:
+        print "Swimming could be dangerous for me."
+        found = True
+
+    if "vacation" in user_input:
+        print "I am going to Hawai this year."
         found = True
 
     if not found:
