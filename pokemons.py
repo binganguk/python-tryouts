@@ -18,7 +18,7 @@ class Pokemon(object):
 
     def got_hit(self, damage):
         self.life -= damage
-        print "{} got {} damage".format(self.name, damage)
+        print "{} got {} damage (life left {})".format(self.name, damage, self.life)
         self.status()
 
     def is_alive(self):
