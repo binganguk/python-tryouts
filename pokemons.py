@@ -47,7 +47,7 @@ class Articuno(Pokemon):
     charged_attack = 200
     charged_attack_frequency = 0.1
     has_tail = True
-    life = 883
+    life = 900
 
 
 class Bulbasaur(Pokemon):
@@ -73,7 +73,6 @@ class Cyndaquil(Pokemon):
     charged_attack_frequency = 0.1
     has_tail = False
     life = 680
-
 
 
 def get_attack_damage(fast_attack, fast_attack_accuracy):
