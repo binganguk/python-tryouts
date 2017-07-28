@@ -4,6 +4,33 @@ import random
 from time import sleep
 
 
+RIP = """
+            ___________
+            |         |
+            |  R.I.P. |
+            |         |
+            |         |
+            |         |
+            |         |
+            |         |
+            |_________|
+"""
+
+
+TROPHY = """
+             ___________
+            '._==_==_=_.'
+            .-\:      /-.
+           | (|:.     |) |
+            '-|:.     |-'
+              \::.    /
+               '::. .'
+                 ) (
+               _.' '._
+              `"""""""`
+
+"""
+
 class Pokemon(object):
     """Base class for pokemon's classification."""
 
@@ -17,9 +44,10 @@ class Pokemon(object):
     life = None
 
     def got_hit(self, damage):
-        self.life -= damage
-        print "{} got {} damage (life left {})".format(self.name, damage, self.life)
-        self.status()
+        if self.life > 0:
+            self.life -= damage
+            print "{} got {} damage (life left {})".format(self.name, damage, self.life)
+            self.status()
 
     def is_alive(self):
         if self.life <= 0:
@@ -72,7 +100,7 @@ class Cyndaquil(Pokemon):
     charged_attack = 70
     charged_attack_frequency = 0.1
     has_tail = False
-    life = 680
+    life = 655
 
 
 def get_attack_damage(fast_attack, fast_attack_accuracy):
@@ -89,7 +117,11 @@ def auto_gym_battle():
 
     counter = 1
 
-    while a.is_alive() == True and b.is_alive() == True and c.is_alive() == True:
+    while (
+        (a.is_alive() == True and b.is_alive() == True)
+        or (a.is_alive() == True and c.is_alive() == True)
+        or (b.is_alive() == True and c.is_alive() == True)
+    ):
         print "\nRound {}\n".format(counter)
 
         a_damage = get_attack_damage(a.fast_attack, a.fast_attack_accuracy)
@@ -103,6 +135,25 @@ def auto_gym_battle():
         counter += 1
 
         sleep(1)
+
+    if a.is_alive() == True or b.is_alive() == True or c.is_alive() == True:
+        print "===============================================\n"
+
+        if a.is_alive() == True:
+            print "The winner is {}".format(a.name)
+
+        if b.is_alive() == True:
+            print "The winner is {}".format(b.name)
+
+        if c.is_alive() == True:
+            print "The winner is {}".format(c.name)
+
+        print TROPHY
+
+    else:
+        print "===============================================\n"
+        print "Everyone died"
+        print RIP
 
 
 auto_gym_battle()
