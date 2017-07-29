@@ -87,7 +87,7 @@ class Bulbasaur(Pokemon):
     charged_attack = 70
     charged_attack_frequency = 0.1
     has_tail = False
-    life = 1250
+    life = 1309
 
 
 class Cyndaquil(Pokemon):
@@ -103,9 +103,13 @@ class Cyndaquil(Pokemon):
     life = 655
 
 
-def get_attack_damage(fast_attack, fast_attack_accuracy):
-    minimal_damage = int(fast_attack * fast_attack_accuracy)
-    return random.randint(minimal_damage, fast_attack)
+# def get_attack_damage(fast_attack, fast_attack_accuracy):
+def get_attack_damage(pokemon):
+    if pokemon.is_alive() == True:
+        minimal_damage = int(pokemon.fast_attack * pokemon.fast_attack_accuracy)
+        return random.randint(minimal_damage, pokemon.fast_attack)
+    else:
+        return 0
 
 
 def auto_gym_battle():
@@ -124,9 +128,12 @@ def auto_gym_battle():
     ):
         print "\nRound {}\n".format(counter)
 
-        a_damage = get_attack_damage(a.fast_attack, a.fast_attack_accuracy)
-        b_damage = get_attack_damage(b.fast_attack, b.fast_attack_accuracy)
-        c_damage = get_attack_damage(c.fast_attack, c.fast_attack_accuracy)
+        a_damage = get_attack_damage(a)
+        b_damage = get_attack_damage(b)
+        c_damage = get_attack_damage(c)
+        # a_damage = get_attack_damage(a.fast_attack, a.fast_attack_accuracy)
+        # b_damage = get_attack_damage(b.fast_attack, b.fast_attack_accuracy)
+        # c_damage = get_attack_damage(c.fast_attack, c.fast_attack_accuracy)
 
         a.got_hit(b_damage + c_damage)
         b.got_hit(a_damage + c_damage)
