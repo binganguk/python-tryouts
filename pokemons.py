@@ -75,7 +75,7 @@ class Articuno(Pokemon):
     charged_attack = 200
     charged_attack_frequency = 0.1
     has_tail = True
-    life = 900
+    life = 1001
 
 
 class Bulbasaur(Pokemon):
