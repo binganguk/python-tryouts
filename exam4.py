@@ -18,7 +18,8 @@ Both dragons can say hello (class method/function `hello`). When they say hello,
 After declaring the classes, make two objects/instances (one of each) and say hello.
 """
 
-class Dragon():
+class Dragon(object):
+    """Abstract dragon class."""
 
     name = None
     color = None

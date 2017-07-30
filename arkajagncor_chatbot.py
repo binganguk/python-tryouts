@@ -65,7 +65,7 @@ def arkajagncor_chatbot():
             found = True
 
         if "vacation" in user_input:
-            print "I am going to Hawai this year."
+            print "I am going to Hawaii this year."
             found = True
 
         if not found:
