@@ -24,8 +24,12 @@ class Dragon(object):
     name = None
     color = None
 
+    def print_color(self):
+        print self.color
+
     def say_hello(self):
         print "Hello, my name is {0}. What a nice day for growling, isn't it? Grr...".format(self.name)
+        self.print_color()
 
 
 class WhiteDragon(Dragon):
