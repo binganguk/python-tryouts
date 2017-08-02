@@ -1,4 +1,7 @@
 """
+Task 1
+======
+
 There are two wizards:
 
     YellowWizard (Yellow wizard)
@@ -24,15 +27,28 @@ Black wizard is blue.
 
 Make two wizard classes and let both wizards prepare potions. Each of the wizards shall also say "boo".
 Make two potions classes.
+
+Task 2
+======
+
+Improve the Potion class. Add a `made_by` property, which contains the name of the wizard who had made it.
+Make appropriate changes to the `make_potion` function/method.
 """
 
 
 class Potion(object):
     sort_of_potion = None
+    made_by = None
+
+    def __init__(self, made_by="Unknown"):
+        self.made_by = made_by
+
+    def __str__(self):
+        return "{0} made by {1}".format(self.sort_of_potion.title(), self.made_by)
 
 
 class PoisoningPotion(Potion):
-        sort_of_potion = "poisoning potion"
+    sort_of_potion = "poisoning potion"
 
 
 class HealingPotion(Potion):
@@ -48,9 +64,9 @@ class Wizard(object):
 
     def make_potion(self, sort_of_potion):
         if sort_of_potion == "poisoning potion":
-            return PoisoningPotion()
+            return PoisoningPotion(made_by=self.name)
         elif sort_of_potion == "healing potion":
-            return HealingPotion()
+            return HealingPotion(made_by=self.name)
 
     def talk_about_beard(self):
         print "Hello, I'm the {0}. Colour of my beard is {1}.".format(self.name, self.beard_color)
@@ -64,7 +80,6 @@ class YellowWizard(Wizard):
 class BlackWizard(Wizard):
     name = "Black Wizard"
     beard_color = "blue"
-
 
 
 y = YellowWizard()
