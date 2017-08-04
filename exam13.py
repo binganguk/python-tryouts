@@ -24,7 +24,7 @@ Task 2
 
 When you print a Cucumber object you should get the following information:
 
-    Cucumber, weight ??? kilograms, price ??? kilograms.
+    Cucumber, weight ??? kilograms, price ??? $.
 """
 
 
@@ -35,7 +35,7 @@ class Cucumber(object):
     price_per_kilo = 10  # Prices are in euro
 
     def __repr__(self):
-        return "Cucumber, weight {0} kilograms, price {1} kilograms".format(self.weight, self.get_price())
+        return "Cucumber, weight {0} kilograms, price {1} $".format(self.weight, self.get_price())
 
     def __init__(self, weight):
         self.weight = weight
