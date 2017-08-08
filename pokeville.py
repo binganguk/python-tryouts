@@ -145,6 +145,14 @@ class Pokemon(object):
         self.amount_of_stardust += amount
         return "Thank you! Now I have {0} stardust.".format(self.amount_of_stardust)
 
+    def request_candies(self):
+        return "Would you give me a candy? Please."
+
+    def request_stardust(self):
+        return "Would you give me some stardust? Please."
+
+
+
 
 class Venusaur(Pokemon):
     name = "Venusaur"
@@ -173,18 +181,38 @@ class Bulbasaur(Pokemon):
     number_of_candies_required_for_upgrade = 150
     upgrade_class = Ivysaur
 
+# Bulbasaur
 
 z = Bulbasaur(custom_name="Tigran")
 print z
+
+# Give some candies and stardust
 print z.give_candy(5)
 print z.give_stardust(10)
 print z
 print z.power_up()
 print z
 print z.get_combat_power()
+
+# Try to upgrade. This should fail.
 z = z.upgrade()
 
+# Give some candies for upgrade.
 print z.give_candy(800)
 
+# Upgrade to Ivysaur
 z = z.upgrade()
+print z
+
+print z.power_up()
+print z
+
+print z.power_up()
+print z
+
+# Upgrade to Venusaur
+z = z.upgrade()
+print z
+
+print z.power_up()
 print z
