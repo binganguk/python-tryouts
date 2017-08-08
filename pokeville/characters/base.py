@@ -1,51 +1,3 @@
-"""
-
-Task 1
-======
-
-Implement upgrades.
-
-    Initial: Bulbasaur
-    Upgrade: Ivysaur
-    Upgrade: Venusaur
-
-Rules:
-
-- Each pokemon has vast amount of immutable properties/fields, such as name, fast_attack, charged_attack.
-- In addition to the immutable properties/fields, they have a number of customisable properties/fields, such as
-  custom_name, number_of_candies, amount_of_stardust.
-- All customisable fields are optional, and shall be passed as additional constructor arguments.
-
-For example:
-
-b = Bulbasaur(custom_name="Tigran")
-
-Each pokemon shall have the following methods:
-
-- give_candy: for the first power-up you need 2 candies, for the second - 4 candies, for the third - 8 candies (and
-  so on).
-- give_stardust: For the first power-up you need 5 stardust, for the second you need 25, for the third you need 125
-  stardust (and so on).
-- power_up: Combat power starts with 20 (initial 10 + 10 power of 1), after power up it becomes 110 (initial 10 + 10
-  power of 2), then 1010 (initial 10 + 10 power of 3) and so on.
-
-You should:
-
-- Implement pokemon upgrades.
-- Vast fields should not be preserved.
-- Customisable fields shall be preserved.
-
-It should finally work as follows:
-
-b = Bulbasaur()
-print b  # Should print something like Bulbasaur: 5 candies, 100 stardust, 200 combat power
-b.give_candy(5)
-b.give_stardust(10)
-b.power_up()
-b = b.upgrade()
-print b  # Should print something like Ivysaur: 5 candies, 100 stardust, 10000 combat power
-
-"""
 class Pokemon(object):
     name = None
     custom_name = None
@@ -86,7 +38,7 @@ class Pokemon(object):
 
         :return:
         """
-        if self.number_of_candies >= 2 ** self.power_up_counter:
+        if self.number_of_candies >= self.candies_needed_for_next_power_up():
             return True
         else:
             return False
@@ -104,15 +56,21 @@ class Pokemon(object):
 
         :return:
         """
-        if self.amount_of_stardust >= 5 ** self.power_up_counter:
+        if self.amount_of_stardust >= self.stardust_needed_for_next_power_up():
             return True
         else:
             return False
 
+    def candies_needed_for_next_power_up(self):
+        return 2 ** self.power_up_counter
+
+    def stardust_needed_for_next_power_up(self):
+        return 5 ** self.power_up_counter
+
     def power_up(self):
         if self.has_enough_candies_for_power_up() and self.has_enough_stardust_for_power_up():
-            self.number_of_candies -= 2 ** self.power_up_counter
-            self.amount_of_stardust -= 5 ** self.power_up_counter
+            self.number_of_candies -= self.candies_needed_for_next_power_up()
+            self.amount_of_stardust -= self.stardust_needed_for_next_power_up()
             self.power_up_counter += 1
             return True
         else:
@@ -150,69 +108,3 @@ class Pokemon(object):
 
     def request_stardust(self):
         return "Would you give me some stardust? Please."
-
-
-
-
-class Venusaur(Pokemon):
-    name = "Venusaur"
-    initial_combat_power = 1000
-    combat_power_value = 10
-    fast_attack = 20
-    charged_attack = 180
-
-
-class Ivysaur(Pokemon):
-    name = "Ivysaur"
-    initial_combat_power = 100
-    combat_power_value = 10
-    fast_attack = 15
-    charged_attack = 70
-    number_of_candies_required_for_upgrade = 600
-    upgrade_class = Venusaur
-
-
-class Bulbasaur(Pokemon):
-    name = "Bulbasaur"
-    initial_combat_power = 10
-    combat_power_value = 10
-    fast_attack = 12
-    charged_attack = 55
-    number_of_candies_required_for_upgrade = 150
-    upgrade_class = Ivysaur
-
-# Bulbasaur
-
-z = Bulbasaur(custom_name="Tigran")
-print z
-
-# Give some candies and stardust
-print z.give_candy(5)
-print z.give_stardust(10)
-print z
-print z.power_up()
-print z
-print z.get_combat_power()
-
-# Try to upgrade. This should fail.
-z = z.upgrade()
-
-# Give some candies for upgrade.
-print z.give_candy(800)
-
-# Upgrade to Ivysaur
-z = z.upgrade()
-print z
-
-print z.power_up()
-print z
-
-print z.power_up()
-print z
-
-# Upgrade to Venusaur
-z = z.upgrade()
-print z
-
-print z.power_up()
-print z
