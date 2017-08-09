@@ -24,6 +24,7 @@ class CharactersTestCase(unittest.TestCase):
 
     def test_give_stardust(self):
         z = Bulbasaur(custom_name="Tigran")
+
         # first time
         self.assertEqual(
             z.give_stardust(39),
@@ -60,6 +61,7 @@ class CharactersTestCase(unittest.TestCase):
 
     def test_has_enough_stardust_for_power_up(self):
         z = Bulbasaur(custom_name="Tigran")
+
         # False case
         self.assertEqual(False, z.has_enough_stardust_for_power_up())
 
@@ -76,6 +78,29 @@ class CharactersTestCase(unittest.TestCase):
         z.give_stardust(33)
         self.assertEqual(True, z.has_enough_stardust_for_power_up())
 
+    def test_candies_needed_for_next_power_up(self):
+        z = Bulbasaur(custom_name="Tigran")
+
+        # first level
+        self.assertEqual(2, z.candies_needed_for_next_power_up())
+
+        # second level
+        z.give_candy(5)
+        z.give_stardust(30)
+        z.power_up()
+        self.assertEqual(4, z.candies_needed_for_next_power_up())
+
+    def test_stardust_needed_for_next_power_up(self):
+        z = Bulbasaur(custom_name="Tigran")
+
+        # first level
+        self.assertEqual(5, z.stardust_needed_for_next_power_up())
+
+        # second level
+        z.give_candy(5)
+        z.give_stardust(30)
+        z.power_up()
+        self.assertEqual(25, z.stardust_needed_for_next_power_up())
 
 
 unittest.main()
