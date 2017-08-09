@@ -7,8 +7,8 @@ class FunctionsTestCase(unittest.TestCase):
 
     def test_sum(self):
         self.assertEqual(
-            sum(3, 4),
-            7
+            first=sum(3, 4),
+            second=7
         )
         self.assertEqual(
             sum(5, 10),
@@ -20,6 +20,10 @@ class FunctionsTestCase(unittest.TestCase):
             mult(3, 4),
             12
         )
+    def test_min(self):
+        self.assertEqual(
 
-
+            min(56, 34),
+            22
+        )
 unittest.main()
