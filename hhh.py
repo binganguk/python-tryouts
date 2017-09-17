@@ -31,7 +31,8 @@ class Preadinius(School):
     start_date = 1947
 
 h = Hogwarts()
-print h.about()
+h.about()
 
 p = Preadinius()
-print p.about()
+p.about()
+
